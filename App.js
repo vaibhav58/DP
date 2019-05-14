@@ -5,13 +5,14 @@ var app=express();
 var url1= require('url');
 var querystring=require('querystring');
 var MongoClient=require('mongodb').MongoClient;
+const port=process.env.PORT || 3000
 
 var url ="mongodb://localhost:27017/user"
 
 app.use(express.static(__dirname + '/public'));
 
 
-app.listen(3000,function(request,response){ 
+app.listen(port,function(request,response){ 
 
 	app.get('/setup',function(request,response){
 		response.sendFile(path.join(__dirname ,'/public','setup.html'));
@@ -111,4 +112,4 @@ app.listen(3000,function(request,response){
 	});
 
 console.log("server started listen on port 3000");
-}).listen(3000);
+}).listen(port);
