@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<head>
+	<style>
+
+		
+		.column{
+					margin: 15px 0px 0px 375px;
+		}
+
+
+		.button {
+			background-color: #4CAF50; 
+			border: none;
+			color: white;
+			padding: 5px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 10px 2px 10px 250px;
+			cursor: pointer;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		}
+		
+		b{
+		color:white;
+		
+		}
+		
+		#detailslogin,#detailssignup{
+					margin: 10px 2px 10px 250px;
+		}
+		
+		.button1{
+			background-color: #4CAF50; 
+			border: none;
+			color: white;
+			padding: 5px 5px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 10px 2px 10px 50px;
+			cursor: pointer;
+			box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+		
+		
+		}
+		
+		
+		
+
+	</style>
+
+	<script>
+		function signup(){
+			document.getElementById("signup1").style.visibility="hidden";
+			document.getElementById("detailssignup").style.visibility="visible";
+		}
+		
+		function setup(){		
+			document.getElementById("signup1").style.visibility="hidden";
+			document.getElementById("detailssignup").style.visibility="hidden";
+			document.getElementById("msg").innerHTML="*Your Profile Is Successfully Created! ";
+		
+		
+		}
+
+
+
+	</script>
+</head>
+<html>
+	
+		<body style="background-image:url('setting_data.jpg');background-color:#ff8080;background-repeat: no-repeat;background-size: cover;">
+
+		<h1 align="center" style="background-color:#A52A2A;color:white;">Setting Personalized Data</h1>
+		<h3 id="msg" align="center"  style="color:Cyan;  "><h3>
+		
+		<form action="/setup" method="post" >	
+				<div class="column" >					
+
+					<input type="button"  class="button" id="signup1" onclick="signup()" value="Set Data"  >
+					<div id="detailssignup" style="visibility: hidden">					
+						<h2 style="color:red" >Enter details</h2>
+						<b>Name</b></br><input type="text" name="name"></br>
+						<b>Mobile Number</b></br><input type="text" name="mobilenumber"></br>
+						<b>User Name</b></br><input type="text" name="username"></br>
+						<b>Password</b></br><input type="text" name="password"></br>
+						<b>SDA Theme</b></br><input list="place" id="Place" name="SDATheme"></br>
+							<datalist id="place">
+								<option value="LightGray ">
+								<option value="DarkCyan">
+								<option value="GreenYellow">
+								<option value="MediumBlue">
+								<option value="Yellow">
+							</datalist>
+							
+						<b>Mirror Poisiton</b></br><input type="text" name="mirrorPosition"></br>
+						<b>Seat Position</b></br><input type="text" name="seatPosition"></br>
+						<input type="submit"  class="button1" onclick="setup()" value="Set Data" >
+
+					</div>
+				</div>
+				
+			</form>
+				
+
+		</body>
+
+
+</html>

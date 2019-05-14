@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	
+	<style>
+
+		body
+		{	
+			background-color: lightblue
+		}
+		
+
+		* {
+			box-sizing: border-box;
+		}
+		
+	.row:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	
+	
+	.column1{
+			float: left;
+			width: 40%;
+			height: 750px; 
+			//background-color:yellow;
+	}
+	
+	.column2{
+			float: left;
+			width: 30%;
+			height: 750px; 
+		//background-color:gray;
+	}
+	
+	#msg{
+		position: relative;
+		text-align: center;
+		color:white;
+	}
+	
+	#time{
+	text-align: right;
+	position: relative;
+	background-color: black;
+	color: white;
+	padding-left: 20px;
+	padding-right: 20px;
+	}
+
+	
+	#lmirrorposition{	
+			position: relative;
+			color:#A52A2A;
+			text-align: center;		
+			animation: 0s fadeIn;
+			animation-delay: 7s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+
+	
+	}
+	
+	.lmirror{
+	
+			position: relative;
+			padding:50px 80px 0px 0px;
+			animation: 0s fadeIn;
+			animation-delay: 11s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+	}
+	
+	
+	#rmirrorposition{
+	
+			position: relative;
+			text-align: center;
+			color:#A52A2A;			
+			animation: 0s fadeIn;
+			animation-delay: 16s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+	
+	}	
+
+	
+
+	.rmirror{
+			position: relative;
+			padding:50px 0px 0px 80px;
+			animation: 0s fadeIn;
+			animation-delay: 19s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+	}
+	
+	#seatposition{
+			position: relative;
+			text-align: center;
+			color:#A52A2A;
+			animation: 0s fadeIn;
+			animation-delay: 25s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+	
+	}
+	
+	.seat{
+
+			position: relative;
+			padding: 0px 0px 150px 150px;
+			animation: 0s fadeIn;
+			animation-delay: 28s;
+			animation-fill-mode: forwards;
+			visibility: hidden;
+	
+	}
+	
+	.hud{
+		width=500px;
+		height=500px;
+	}
+	
+
+	
+	
+	@keyframes fadeIn {
+		99% {visibility: hidden;}
+		100% {visibility: visible;}
+
+	}	
+	
+
+    	
+
+	
+
+	
+	
+
+	</style>
+
+
+
+	
+	
+ <body style="background-image:url('background.jpg');background-repeat: no-repeat;background-size: cover;">
+ 
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		
+
+		
+		$(document).ready(function() {	
+			$.getJSON("http://localhost:3000/", function(jd){
+				//document.getElementById("jq").innerHTML=(jd.name);
+				//document.getElementById("jq").innerHTML="welocome";
+				
+						function addZero(x){
+							if(x<10)
+							x='0'+x;
+							return x;
+						}
+						var d = new Date();
+						var h = addZero(d.getHours());
+						var m = addZero(d.getMinutes());
+						var yy = d.getFullYear();
+						var mm = d.getMonth();
+						mm = addZero(mm+1);
+						var dd = addZero(d.getDate());
+						var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+						var day = days[d.getDay()];
+						document.getElementById('time').innerHTML = h+':'+m+', '+day+', '+yy+'-'+mm+'-'+dd
+						if(h >= 0 && h < 12){
+							$('#msg').html('Good Morning '+jd.name );
+						}else if(h >= 12 && h < 18){
+							$('#msg').html('Good Afternoon '+jd.name );
+						}
+						else{
+							$('#msg').html('Good Evening '+jd.name );
+						}
+						
+						
+						
+						$('.hud').css('background',jd.SDATheme);
+                		$('#lmirrorposition').html('Setting Left Mirror Position to : ' + jd.mirrorPosition );
+						$('#rmirrorposition').html('Setting Right Mirror Position to : ' + jd.mirrorPosition );						 
+                		$('#seatposition').html('Setting seat Position to : ' + jd.seatPosition );
+						
+						setTimeout(function(){ 
+								$('#lmirrorposition').html('Left Mirror Setting Done  ');		
+						}, 13000);
+						
+						setTimeout(function(){ 
+								$('#rmirrorposition').html('Right Mirror Setting Done  ');		
+						},22000);
+						
+						setTimeout(function(){ 
+								$('#seatposition').html('Seat Position Setting Done  ' );		
+						}, 31000);
+						
+						setTimeout(function(){ 
+								$('#lmirrorposition').html('');
+								$('#rmirrorposition').html('');															
+								$('#seatposition').html('');
+								$('#msg').html('All Set, Happy Journey  '+jd.name+'!');								
+						}, 34000);
+						
+						
+
+
+   		 	});
+ 		});
+		
+		
+	</script>
+		
+
+<h1 align="center" style="background-color:#483D8B;font-size:25px;color:white;">Digital Personalization Demo</h1>
+		
+		<div class='column2'>
+				<h1 style="text-align:center;  background-color: coral;">Left Mirror</h1>
+				<h2 id='lmirrorposition'><h2>
+				<img class='lmirror' src='mirror.jpg' align="right" width="250" height="200" />
+		</div>
+		
+		
+		<div class='column1'>
+				<h1 style="text-align:center;  background-color: green;">SDA</h1>
+				<div class="hud" >
+					<h2 id='msg'></h2>
+					  <h4 id="time"><h4>
+					<img src='sample.png'  width="530" height="200" />
+				</div>
+				
+				<h1 style="text-align:center;  background-color: coral;">Seat</h1>
+				<h2 id='seatposition'><h2>
+				<img class="seat" src="seat.png"   />
+		</div>
+		
+		<div class='column2'>
+				<h1 style="text-align:center;  background-color: coral;">Right Mirror</h1>
+				<h2 id='rmirrorposition'><h2>
+				<img class='rmirror' src='rmirror.png' align="left" width="250" height="200" />
+		</div>
+	
+	</body>
+	
+
+	
+</html> 
